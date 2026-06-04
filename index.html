@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gia Cát Dự – Rước iPhone Bự | WC2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Barlow+Condensed:wght@400;600;700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #FFD700;
+    --gold2: #FFA500;
+    --deep: #0a0612;
+    --purple: #1a0a3c;
+    --accent: #e63946;
+    --green: #2ecc71;
+    --text: #f0e6ff;
+    --glow: rgba(255,200,0,0.35);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--deep);
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── STARFIELD ─────────────────────────────── */
+  #stars {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 20% 50%, #1a0a3c 0%, #0a0612 60%);
+    overflow: hidden;
+  }
+  #stars::before, #stars::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, #fff 0%, transparent 100%),
+      radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,.7) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 55% 30%, #fff 0%, transparent 100%),
+      radial-gradient(1px 1px at 75% 80%, rgba(255,255,255,.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 20%, #fff 0%, transparent 100%),
+      radial-gradient(2px 2px at 45% 70%, rgba(255,215,0,.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 20% 90%, rgba(255,255,255,.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 65% 10%, rgba(255,255,255,.8) 0%, transparent 100%);
+    animation: twinkle 4s ease-in-out infinite alternate;
+  }
+  #stars::after {
+    background-image:
+      radial-gradient(1px 1px at 5% 50%, rgba(255,215,0,.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 40% 25%, #fff 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 80% 55%, rgba(255,255,255,.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 75%, rgba(255,200,100,.5) 0%, transparent 100%),
+      radial-gradient(2px 2px at 60% 90%, rgba(255,255,255,.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 95% 40%, #fff 0%, transparent 100%);
+    animation-delay: 2s;
+  }
+  @keyframes twinkle { from { opacity: .6 } to { opacity: 1 } }
+
+  /* ─── LAYOUT ────────────────────────────────── */
+  .page {
+    position: relative; z-index: 1;
+    max-width: 520px; margin: 0 auto;
+    padding: 0 0 120px;
+  }
+
+  /* ─── HERO BANNER ───────────────────────────── */
+  .hero {
+    position: relative;
+    background: linear-gradient(180deg,#1a0a3c 0%, #0a0612 100%);
+    overflow: hidden;
+    padding: 60px 20px 70px;
+    text-align: center;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(255,165,0,.18) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(138,43,226,.25) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 80% 80%, rgba(230,57,70,.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-logo {
+    font-family: 'Oswald', sans-serif;
+    font-size: 42px;
+    line-height: 1.05;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 40px var(--glow), 0 4px 8px rgba(0,0,0,.8);
+    position: relative; z-index: 1;
+    margin-bottom: 6px;
+  }
+  .hero-logo span.gold {
+    background: linear-gradient(135deg, #ffe066 0%, #ffb300 50%, #ff8c00 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-logo span.white { color: #fff; }
+
+  .hero-sub {
+    display: inline-block;
+    background: linear-gradient(90deg, #7c3aed, #4f46e5);
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    position: relative; z-index: 1;
+    border: 1px solid rgba(255,255,255,.2);
+  }
+
+  .trophy-wrap {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; justify-content: center;
+    gap: 16px;
+    margin: 10px 0 24px;
+  }
+  .trophy-img {
+    width: 130px;
+    filter: drop-shadow(0 0 24px rgba(255,180,0,.7)) drop-shadow(0 8px 16px rgba(0,0,0,.8));
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0) rotate(-2deg); }
+    50%      { transform: translateY(-10px) rotate(2deg); }
+  }
+  .iphone-img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    filter: drop-shadow(0 0 16px rgba(255,100,0,.5));
+    animation: float 3s ease-in-out infinite;
+    animation-delay: .5s;
+  }
+  .year-badge {
+    font-family: 'Oswald', sans-serif;
+    font-size: 60px;
+    font-weight: 700;
+    background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: absolute; right: 10px; top: -5px;
+    letter-spacing: -2px;
+    line-height: 1;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.5));
+  }
+  @keyframes swing {
+    20% { transform: rotate(10deg); }
+    40% { transform: rotate(-8deg); }
+    60% { transform: rotate(5deg); }
+    80% { transform: rotate(-2deg); }
+    100% { transform: rotate(0deg); }
+  }
+  @keyframes prize-glow {
+    0%, 100% { box-shadow: 0 0 10px rgba(255,215,0,.3); }
+    50%      { box-shadow: 0 0 25px rgba(255,215,0,.7); }
+  }
+
+  /* Chance badge */
+  .chance-row {
+    position: relative; z-index: 1;
+    display: flex; align-items: stretch; justify-content: center;
+    gap: 12px; flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .chance-box {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,215,0,.25);
+    border-radius: 14px;
+    padding: 14px 18px;
+    text-align: left;
+    backdrop-filter: blur(8px);
+    flex: 1; min-width: 140px;
+  }
+  .chance-box .label {
+    font-size: 11px; color: rgba(255,255,255,.6);
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 2px;
+  }
+  .chance-box .big {
+    font-family: 'Oswald', sans-serif;
+    font-size: 48px; line-height: 1;
+    background: linear-gradient(135deg, #ffe066, #ff8c00);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .chance-box .model {
+    font-size: 11px; color: var(--gold2);
+    font-weight: 700; letter-spacing: .5px;
+    margin-top: 2px;
+  }
+  .feature-list {
+    display: flex; flex-direction: column; gap: 8px;
+    flex: 1; min-width: 140px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,215,0,.15);
+    border-radius: 14px; padding: 14px 16px;
+  }
+  .feat {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px; font-weight: 600; letter-spacing: .3px;
+  }
+  .feat-icon { font-size: 18px; }
+
+  /* ─── COUNTDOWN ─────────────────────────────── */
+  .countdown-section {
+    margin: 0 16px 10px;
+    background: linear-gradient(135deg, rgba(124,58,237,.25), rgba(79,70,229,.15));
+    border: 1px solid rgba(124,58,237,.4);
+    border-radius: 18px;
+    padding: 18px 16px;
+    text-align: center;
+  }
+  .countdown-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 600; letter-spacing: 2px;
+    color: rgba(255,255,255,.6); text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .countdown-boxes {
+    display: flex; justify-content: center; gap: 10px;
+  }
+  .cd-box {
+    display: flex; flex-direction: column; align-items: center;
+    background: rgba(0,0,0,.35);
+    border: 1px solid rgba(255,215,0,.2);
+    border-radius: 12px; padding: 10px 16px;
+    min-width: 60px;
+  }
+  .cd-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 32px; line-height: 1;
+    background: linear-gradient(135deg, #ffe066, #ffa500);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .cd-label {
+    font-size: 10px; color: rgba(255,255,255,.5);
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-top: 3px;
+  }
+
+  /* ─── HOW TO PLAY ────────────────────────────── */
+  .section {
+    margin: 0 16px 12px;
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px; font-weight: 900; letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-title::before, .section-title::after {
+    content: '';
+    flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,215,0,.4), transparent);
+  }
+
+  .steps {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .step {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 14px; padding: 14px 16px;
+    transition: border-color .3s;
+  }
+  .step:hover { border-color: rgba(255,215,0,.3); }
+  .step-num {
+    background: linear-gradient(135deg, #ffe066, #ffa500);
+    color: #000;
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px; font-weight: 700;
+    width: 34px; height: 34px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-text strong {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px; font-weight: 700;
+    color: #fff; margin-bottom: 2px;
+  }
+  .step-text span { font-size: 13px; color: rgba(255,255,255,.6); }
+
+  /* ─── PRIZES ─────────────────────────────────── */
+  .prizes-grid {
+    display: grid; grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .prize-card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,215,0,.2);
+    border-radius: 16px;
+    padding: 20px 16px;
+    text-align: center;
+    position: relative; overflow: hidden;
+    transition: transform .3s, border-color .3s;
+  }
+  .prize-card:hover { transform: translateY(-4px); border-color: rgba(255,215,0,.5); }
+  .prize-card.featured {
+    background: linear-gradient(135deg, rgba(255,140,0,.15), rgba(255,215,0,.08));
+    border-color: rgba(255,215,0,.5);
+    animation: prize-glow 2s ease-in-out infinite;
+  }
+  .prize-card.featured .prize-emoji {
+    height: 80px;
+    margin-bottom: 0;
+    animation: swing 2.5s ease-in-out infinite;
+    transform-origin: 50% 0;
+  }
+  .prize-emoji {
+    height: 100px;
+    width: auto;
+    margin: 0 auto 8px;
+    display: block;
+  }
+  .prize-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px; font-weight: 700; color: #fff;
+  }
+  .prize-desc { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 3px; }
+  .prize-featured-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    background: linear-gradient(135deg, #ffe066, #ff8c00);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ─── FLOATING SIDE BUTTONS ──────────────────── */
+  .side-btns {
+    position: fixed;
+    right: 12px; top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .side-btn {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 3px;
+    cursor: pointer;
+    border: none; outline: none;
+    transition: transform .2s, box-shadow .2s;
+    font-size: 22px;
+    position: relative;
+  }
+  .side-btn:hover { transform: scale(1.1); }
+  .side-btn .btn-label {
+    font-size: 9px; font-weight: 700; letter-spacing: .3px;
+    line-height: 1; font-family: 'Nunito', sans-serif;
+  }
+  .side-btn.gift {
+    background: linear-gradient(135deg, #ff6b35, #f7c59f);
+    box-shadow: 0 4px 16px rgba(255,107,53,.5);
+    color: #fff;
+  }
+  .side-btn.contact {
+    background: linear-gradient(135deg, #00b09b, #96c93d);
+    box-shadow: 0 4px 16px rgba(0,176,155,.5);
+    color: #fff;
+  }
+
+  /* ─── CONTACT POPUP ──────────────────────────── */
+  .popup-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.75);
+    z-index: 200;
+    align-items: flex-end; justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+  .popup-overlay.show { display: flex; }
+  .popup-sheet {
+    background: linear-gradient(180deg, #1e0f40, #0d0620);
+    border: 1px solid rgba(255,215,0,.2);
+    border-bottom: none;
+    border-radius: 24px 24px 0 0;
+    padding: 28px 24px 36px;
+    width: 100%; max-width: 520px;
+    animation: slideUp .3s ease;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+  }
+  .popup-handle {
+    width: 40px; height: 4px;
+    background: rgba(255,255,255,.2);
+    border-radius: 2px;
+    margin: 0 auto 20px;
+  }
+  .popup-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px; text-align: center;
+    background: linear-gradient(135deg, #ffe066, #ffa500);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+  }
+  .contact-options {
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .contact-opt {
+    display: flex; align-items: center; gap: 16px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 16px;
+    padding: 16px 20px;
+    text-decoration: none; color: inherit;
+    cursor: pointer; transition: all .2s;
+  }
+  .contact-opt:hover {
+    background: rgba(255,255,255,.1);
+    border-color: rgba(255,215,0,.4);
+    transform: translateX(4px);
+  }
+  .contact-opt-icon {
+    width: 48px; height: 48px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; flex-shrink: 0;
+  }
+  .opt-online .contact-opt-icon { background: linear-gradient(135deg, #00b09b, #96c93d); }
+  .opt-telegram .contact-opt-icon { background: linear-gradient(135deg, #2aabee, #0088cc); }
+  .contact-opt-text strong {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 17px; font-weight: 700; color: #fff;
+    letter-spacing: .3px;
+  }
+  .contact-opt-text span { font-size: 12px; color: rgba(255,255,255,.5); }
+  .popup-close {
+    margin-top: 16px; width: 100%;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    color: rgba(255,255,255,.5);
+    padding: 12px;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px; cursor: pointer;
+    transition: background .2s;
+  }
+  .popup-close:hover { background: rgba(255,255,255,.12); }
+
+  /* ─── GIFT POPUP ─────────────────────────────── */
+  .gift-sheet .gift-badges {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .gift-badge {
+    display: flex; align-items: center; gap: 14px;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,215,0,.2);
+    border-radius: 14px; padding: 14px 16px;
+  }
+  .gift-badge-icon {
+    font-size: 30px; width: 50px; text-align: center;
+  }
+  .gift-badge-info strong {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px; color: var(--gold);
+    font-weight: 700;
+  }
+  .gift-badge-info span { font-size: 12px; color: rgba(255,255,255,.55); }
+
+  /* ─── STICKY CTA ─────────────────────────────── */
+  .sticky-cta {
+    position: fixed; bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 100%; max-width: 520px;
+    z-index: 150;
+    padding: 12px 16px 20px;
+    background: linear-gradient(0deg, rgba(10,6,18,1) 60%, transparent);
+  }
+  .cta-btn {
+    display: block; width: 100%;
+    background: linear-gradient(135deg, #ffb300 0%, #ff6f00 50%, #e53935 100%);
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    text-align: center; text-decoration: none;
+    padding: 18px 24px;
+    border-radius: 18px;
+    border: none; cursor: pointer;
+    box-shadow:
+      0 8px 32px rgba(255,100,0,.5),
+      0 2px 0 rgba(255,255,255,.15) inset,
+      0 -2px 0 rgba(0,0,0,.3) inset;
+    position: relative; overflow: hidden;
+    transition: transform .15s, box-shadow .15s;
+    animation: pulseBtn 2s ease-in-out infinite;
+  }
+  .cta-btn::before {
+    content: '';
+    position: absolute; top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
+    animation: shimmer 2.5s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    0%   { left: -100%; }
+    100% { left: 200%; }
+  }
+  @keyframes pulseBtn {
+    0%,100% { box-shadow: 0 8px 32px rgba(255,100,0,.5), 0 2px 0 rgba(255,255,255,.15) inset, 0 -2px 0 rgba(0,0,0,.3) inset; }
+    50%      { box-shadow: 0 12px 48px rgba(255,100,0,.8), 0 2px 0 rgba(255,255,255,.2) inset, 0 -2px 0 rgba(0,0,0,.3) inset; }
+  }
+  .cta-btn:active { transform: scale(.97); }
+  .cta-sub {
+    text-align: center;
+    font-size: 11px; color: rgba(255,255,255,.4);
+    margin-top: 6px; letter-spacing: .5px;
+  }
+
+  /* ─── TICKER ─────────────────────────────────── */
+  .ticker-wrap {
+    background: rgba(255,215,0,.08);
+    border-top: 1px solid rgba(255,215,0,.15);
+    border-bottom: 1px solid rgba(255,215,0,.15);
+    overflow: hidden; padding: 8px 0; margin-bottom: 12px;
+  }
+  .ticker {
+    display: flex; gap: 60px;
+    white-space: nowrap;
+    animation: tick 20s linear infinite;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px; font-weight: 600; letter-spacing: .5px;
+    color: var(--gold);
+  }
+  @keyframes tick { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+  .ticker-item::before { content: '⚽ '; }
+</style>
+</head>
+<body>
+
+<div id="stars"></div>
+
+<!-- SIDE BUTTONS -->
+<div class="side-btns">
+  <button class="side-btn gift" onclick="openGift()">
+    🎁
+    <span class="btn-label">Quà Tặng</span>
+  </button>
+  <button class="side-btn contact" onclick="openContact()">
+    💬
+    <span class="btn-label">CSKH</span>
+  </button>
+</div>
+
+<!-- CONTACT POPUP -->
+<div class="popup-overlay" id="contactPopup" onclick="closeContact(event)">
+  <div class="popup-sheet">
+    <div class="popup-handle"></div>
+    <div class="popup-title">📞 Liên Hệ Hỗ Trợ</div>
+    <div class="contact-options">
+      <a href="https://azvip88.com/helpmobi" class="contact-opt opt-online" target="_blank">
+        <div class="contact-opt-icon">💬</div>
+        <div class="contact-opt-text">
+          <strong>CSKH Online</strong>
+          <span>Chat trực tiếp – Phản hồi trong 3 phút</span>
+        </div>
+      </a>
+      <a href="https://t.me/ADM_EZ88" class="contact-opt opt-telegram" target="_blank">
+        <div class="contact-opt-icon">✈️</div>
+        <div class="contact-opt-text">
+          <strong>Telegram</strong>
+          <span>@cskh – Hỗ trợ 24/7</span>
+        </div>
+      </a>
+    </div>
+    <button class="popup-close" onclick="closeContact()">Đóng</button>
+  </div>
+</div>
+
+<!-- GIFT POPUP -->
+<div class="popup-overlay" id="giftPopup" onclick="closeGift(event)">
+  <div class="popup-sheet gift-sheet">
+    <div class="popup-handle"></div>
+    <div class="popup-title">🎁 Quà Tặng Dành Cho Bạn</div>
+    <div class="gift-badges">
+      <div class="gift-badge">
+        <div class="gift-badge-icon">📱</div>
+        <div class="gift-badge-info">
+          <strong>iPhone 17 Pro Max</strong>
+          <span>Cơ hội trúng 50% – Dự đoán đúng kết quả WC2026</span>
+        </div>
+      </div>
+      <div class="gift-badge">
+        <div class="gift-badge-icon">💰</div>
+        <div class="gift-badge-info">
+          <strong>Tiền thưởng lên đến 10,000,000 XU</strong>
+          <span>Đăng ký mới nhận ngay – Tối đa 10,000,000 XU</span>
+        </div>
+      </div>
+      <div class="gift-badge">
+        <div class="gift-badge-icon">🎫</div>
+        <div class="gift-badge-info">
+          <strong>Voucher &amp; Quà vật lý</strong>
+          <span>Dành cho các dự đoán xuất sắc nhất</span>
+        </div>
+      </div>
+      <div class="gift-badge">
+        <div class="gift-badge-icon">⭐</div>
+        <div class="gift-badge-info">
+          <strong>Điểm thưởng tích lũy</strong>
+          <span>Mỗi lần tham gia nhận điểm đổi quà hấp dẫn</span>
+        </div>
+      </div>
+    </div>
+    <button class="popup-close" onclick="closeGift()">Đóng</button>
+  </div>
+</div>
+
+<!-- MAIN PAGE -->
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-logo">
+      <span class="gold">Gia Cát Dự</span><br>
+      <span class="white">Rước iPhone Bự</span>
+    </div>
+    <div class="hero-sub">🏆 Sự Kiện Dự Đoán WC2026</div>
+
+    <div class="trophy-wrap">
+      <img class="iphone-img" src="images/az88.jpg"
+           onerror="this.style.display='none'" alt="">
+    </div>
+
+    <div class="chance-row">
+      <div class="chance-box">
+        <div class="label">Cơ hội trúng</div>
+        <div class="big">50%</div>
+        <div class="model">IPHONE 17 PRO MAX</div>
+      </div>
+      <div class="feature-list">
+        <div class="feat"><span class="feat-icon">🏆</span> Dự đoán hay</div>
+        <div class="feat"><span class="feat-icon">🎁</span> Quà cực chất</div>
+        <div class="feat"><span class="feat-icon">⭐</span> Tham gia ngay</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span class="ticker-item">ha***h vừa tham gia dự đoán</span>
+      <span class="ticker-item">ti***o vừa tham gia dự đoán</span>
+      <span class="ticker-item">du***9 vừa tham gia dự đoán</span>
+      <span class="ticker-item">ae***8 vừa tham gia dự đoán</span>
+      <span class="ticker-item">hu***n vừa tham gia dự đoán</span>
+      <span class="ticker-item">th***h vừa tham gia dự đoán</span>
+      <span class="ticker-item">yo***m vừa tham gia dự đoán</span>
+      <span class="ticker-item">ia***5 vừa tham gia dự đoán</span>
+      <span class="ticker-item">th***8 vừa tham gia dự đoán</span>
+    </div>
+  </div>
+
+  <!-- COUNTDOWN -->
+  <div class="countdown-section">
+    <div class="countdown-title">⏱ Sự kiện kết thúc sau</div>
+    <div class="countdown-boxes">
+      <div class="cd-box"><div class="cd-num" id="cd-d">07</div><div class="cd-label">Ngày</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-h">14</div><div class="cd-label">Giờ</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-m">32</div><div class="cd-label">Phút</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-s">59</div><div class="cd-label">Giây</div></div>
+    </div>
+  </div>
+
+  <!-- HOW TO PLAY -->
+  <div class="section">
+    <div class="section-title">Cách Tham Gia</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Đăng ký tài khoản</strong>
+          <span>Tạo tài khoản miễn phí trong 30 giây</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Chọn trận đấu &amp; dự đoán</strong>
+          <span>Nhận xét tỉ số, đội vô địch WC2026</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>Dự đoán đúng – Trúng thưởng lớn</strong>
+          <span>Cơ hội nhận iPhone 17 Pro Max &amp; nhiều quà hấp dẫn</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRIZES -->
+  <div class="section">
+    <div class="section-title">Giải Thưởng</div>
+    <div class="prizes-grid">
+      <div class="prize-card featured">
+        <img class="prize-emoji" src="images/ip17.png" alt="iPhone 17 Pro Max">
+        <div class="prize-featured-name">iPhone 17 Pro Max</div>
+        <div class="prize-desc">Giải thưởng độc quyền</div>
+      </div>
+      <div class="prize-card">
+        <img class="prize-emoji" src="images/promo.jpg" alt="Voucher">
+        <div class="prize-name">Voucher</div>
+        <div class="prize-desc">Quà tặng vật lý</div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div><!-- end .page -->
+
+<!-- STICKY CTA -->
+<div class="sticky-cta">
+  <button class="cta-btn" onclick="window.location.href='https://azvip88.com/?s=GYKV'">
+    🏆 ĐĂNG KÝ DỰ ĐOÁN NGAY
+  </button>
+  <div class="cta-sub">Miễn phí tham gia · Trúng thưởng thực · Rút tiền nhanh</div>
+</div>
+
+<script>
+  // ── Countdown
+  function updateCountdown() {
+    const end = new Date();
+    end.setDate(end.getDate() + 7);
+    end.setHours(end.getHours() + 14, end.getMinutes() + 32, 59, 0);
+    const target = end.getTime();
+
+    setInterval(() => {
+      const now = Date.now();
+      let diff = Math.max(0, Math.floor((target - now) / 1000));
+      const d = Math.floor(diff / 86400); diff %= 86400;
+      const h = Math.floor(diff / 3600);  diff %= 3600;
+      const m = Math.floor(diff / 60);
+      const s = diff % 60;
+      document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
+      document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+      document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+      document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+    }, 1000);
+  }
+  updateCountdown();
+
+  // ── Contact
+  function openContact() {
+    document.getElementById('contactPopup').classList.add('show');
+  }
+  function closeContact(e) {
+    if (!e || e.target === document.getElementById('contactPopup')) {
+      document.getElementById('contactPopup').classList.remove('show');
+    }
+  }
+
+  // ── Gift
+  function openGift() {
+    document.getElementById('giftPopup').classList.add('show');
+  }
+  function closeGift(e) {
+    if (!e || e.target === document.getElementById('giftPopup')) {
+      document.getElementById('giftPopup').classList.remove('show');
+    }
+  }
+
+  // ── CTA
+  function handleCTA() {
+    // Replace with actual registration URL
+    alert('Đang chuyển đến trang đăng ký...');
+  }
+</script>
+</body>
+</html>
