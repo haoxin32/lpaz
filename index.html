@@ -670,6 +670,139 @@ src="https://www.facebook.com/tr?id=970371719138828&ev=PageView&noscript=1"
   }
   .popup-close:hover { background: rgba(255,255,255,.12); color: rgba(255,255,255,.8); }
 
+  /* ─── AGE VERIFY POPUP ───────────────────────── */
+  .age-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.85);
+    z-index: 300;
+    align-items: center; justify-content: center;
+    backdrop-filter: blur(8px);
+    padding: 20px;
+  }
+  .age-overlay.show { display: flex; }
+  .age-sheet {
+    background: linear-gradient(165deg, #1e0d44 0%, #0d0520 100%);
+    border: 1px solid rgba(255,215,0,.28);
+    border-radius: 28px;
+    padding: 36px 28px 32px;
+    width: 100%; max-width: 400px;
+    text-align: center;
+    position: relative; overflow: hidden;
+    box-shadow: 0 0 60px rgba(120,50,220,.25), 0 24px 80px rgba(0,0,0,.7);
+    animation: ageEntrance .42s var(--ease-out-expo);
+  }
+  /* Top gold shimmer line */
+  .age-sheet::before {
+    content: '';
+    position: absolute; top: 0; left: 15%; right: 15%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,215,0,.6), transparent);
+  }
+  @keyframes ageEntrance {
+    from { opacity: 0; transform: scale(.88) translateY(20px); }
+    to   { opacity: 1; transform: scale(1)   translateY(0); }
+  }
+  .age-icon {
+    font-size: 52px;
+    margin-bottom: 12px;
+    display: block;
+    filter: drop-shadow(0 0 16px rgba(255,180,0,.5));
+    animation: floatLux 4s cubic-bezier(.45,.05,.55,.95) infinite;
+  }
+  .age-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 24px; letter-spacing: 1.5px;
+    background: linear-gradient(135deg, #fff7a0 0%, #ffd422 45%, #ffa500 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .age-desc {
+    font-size: 13px; color: rgba(255,255,255,.5);
+    line-height: 1.6; margin-bottom: 24px;
+    letter-spacing: .3px;
+  }
+  /* Checkbox row */
+  .age-check-row {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    background: rgba(255,215,0,.06);
+    border: 1px solid rgba(255,215,0,.2);
+    border-radius: 16px;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+    cursor: pointer;
+    transition: background .25s, border-color .25s;
+    user-select: none;
+  }
+  .age-check-row:hover { background: rgba(255,215,0,.1); border-color: rgba(255,215,0,.4); }
+  .age-check-row input[type="checkbox"] {
+    appearance: none; -webkit-appearance: none;
+    width: 22px; height: 22px; border-radius: 7px;
+    border: 2px solid rgba(255,215,0,.4);
+    background: rgba(0,0,0,.3);
+    cursor: pointer; flex-shrink: 0;
+    position: relative;
+    transition: background .2s, border-color .2s;
+  }
+  .age-check-row input[type="checkbox"]:checked {
+    background: linear-gradient(135deg, #ffd422, #ff9000);
+    border-color: #ffd422;
+  }
+  .age-check-row input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute; top: 3px; left: 6px;
+    width: 6px; height: 11px;
+    border: 2px solid #000;
+    border-top: none; border-left: none;
+    transform: rotate(45deg);
+  }
+  .age-check-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px; font-weight: 700; letter-spacing: .4px;
+    color: rgba(255,255,255,.85);
+    cursor: pointer;
+  }
+  /* Confirm button */
+  .age-confirm-btn {
+    display: block; width: 100%;
+    background: linear-gradient(135deg, #ffd000 0%, #ff8c00 45%, #e53935 100%);
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 16px;
+    border-radius: 16px; border: none; cursor: pointer;
+    position: relative; overflow: hidden;
+    transition: opacity .25s, transform .2s var(--ease-out-expo), box-shadow .2s;
+    box-shadow: 0 8px 32px rgba(255,100,0,.5);
+    margin-bottom: 12px;
+    opacity: .4; pointer-events: none;
+  }
+  .age-confirm-btn.active {
+    opacity: 1; pointer-events: all;
+    animation: pulseBtn 2.4s ease-in-out infinite;
+  }
+  .age-confirm-btn::before {
+    content: '';
+    position: absolute; top: 0; left: -120%; width: 55%; height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,.25), transparent);
+    animation: shimmer 2.8s ease-in-out infinite;
+  }
+  .age-confirm-btn:hover { transform: translateY(-2px); }
+  .age-confirm-btn:active { transform: scale(.97); }
+  /* Under-18 button */
+  .age-deny-btn {
+    display: block; width: 100%;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    color: rgba(255,255,255,.45);
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px; padding: 13px;
+    border-radius: 14px; cursor: pointer;
+    transition: background .2s, color .2s;
+  }
+  .age-deny-btn:hover { background: rgba(255,255,255,.1); color: rgba(255,255,255,.7); }
+
   /* ─── GIFT POPUP ─────────────────────────────── */
   .gift-sheet .gift-badges {
     display: flex; flex-direction: column; gap: 12px;
@@ -754,6 +887,60 @@ src="https://www.facebook.com/tr?id=970371719138828&ev=PageView&noscript=1"
     font-size: 11px; color: rgba(255,255,255,.38);
     margin-top: 7px; letter-spacing: .6px;
   }
+
+  /* ─── INFO MARQUEE BANNER ────────────────────── */
+  .info-marquee-wrap {
+    position: relative;
+    margin: 0 0 20px;
+    padding: 14px 0;
+    background: linear-gradient(135deg, rgba(255,215,0,.10) 0%, rgba(255,140,0,.08) 50%, rgba(255,215,0,.10) 100%);
+    border-top: 1px solid rgba(255,215,0,.28);
+    border-bottom: 1px solid rgba(255,215,0,.28);
+    overflow: hidden;
+  }
+  /* Edge fade masks */
+  .info-marquee-wrap::before, .info-marquee-wrap::after {
+    content: '';
+    position: absolute; top: 0; bottom: 0; width: 72px; z-index: 2;
+    pointer-events: none;
+  }
+  .info-marquee-wrap::before {
+    left: 0;
+    background: linear-gradient(90deg, var(--deep), transparent);
+  }
+  .info-marquee-wrap::after {
+    right: 0;
+    background: linear-gradient(-90deg, var(--deep), transparent);
+  }
+  .info-marquee {
+    display: flex;
+    gap: 0;
+    white-space: nowrap;
+    animation: marqueeScroll 18s linear infinite;
+    width: max-content;
+  }
+  .info-marquee:hover { animation-play-state: paused; }
+  @keyframes marqueeScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .info-marquee-item {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px; font-weight: 700; letter-spacing: .6px;
+    color: var(--gold);
+    padding: 0 28px;
+    text-shadow: 0 0 14px rgba(255,200,0,.4);
+  }
+  .info-marquee-item .dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: linear-gradient(135deg, #ffd422, #ff8c00);
+    box-shadow: 0 0 8px rgba(255,180,0,.7);
+    flex-shrink: 0;
+  }
+  .info-marquee-item .icon {
+    font-size: 16px;
+  }
 </style>
 </head>
 <body>
@@ -783,14 +970,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="popup-handle"></div>
     <div class="popup-title">📞 Liên Hệ Hỗ Trợ</div>
     <div class="contact-options">
-      <a href="https://azvip88.com/helpmobi" class="contact-opt opt-online" target="_blank">
+      <a href="https://t.me/binhan5252" class="contact-opt opt-online" target="_blank">
         <div class="contact-opt-icon">💬</div>
         <div class="contact-opt-text">
           <strong>CSKH Online</strong>
           <span>Chat trực tiếp – Phản hồi trong 3 phút</span>
         </div>
       </a>
-      <a href="https://t.me/ADM_EZ88" class="contact-opt opt-telegram" target="_blank">
+      <a href="https://t.me/binhan5252" class="contact-opt opt-telegram" target="_blank">
         <div class="contact-opt-icon">✈️</div>
         <div class="contact-opt-text">
           <strong>Telegram</strong>
@@ -799,6 +986,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
     </div>
     <button class="popup-close" onclick="closeContact()">Đóng</button>
+  </div>
+</div>
+
+<!-- AGE VERIFY POPUP -->
+<div class="age-overlay" id="agePopup">
+  <div class="age-sheet">
+    <span class="age-icon">🔞</span>
+    <div class="age-title">Xác Nhận Độ Tuổi</div>
+    <p class="age-desc">
+      Nội dung này chỉ dành cho người từ <strong style="color:var(--gold)">18 tuổi trở lên</strong>.<br>
+      Vui lòng xác nhận để tiếp tục.
+    </p>
+    <label class="age-check-row" for="ageCheck">
+      <input type="checkbox" id="ageCheck" onchange="toggleAgeBtn()">
+      <span class="age-check-label">Tôi đã đủ 18 tuổi và đồng ý tiếp tục</span>
+    </label>
+    <button class="age-confirm-btn" id="ageConfirmBtn" onclick="ageConfirm()">
+      ✅ Xác Nhận &amp; Tiếp Tục
+    </button>
+    <button class="age-deny-btn" onclick="ageDeny()">
+      Chưa đủ 18 tuổi – Quay lại
+    </button>
   </div>
 </div>
 
@@ -910,6 +1119,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="gold-divider reveal"></div>
 
+  <!-- INFO MARQUEE BANNER -->
+  <div class="info-marquee-wrap reveal">
+    <div class="info-marquee">
+      <!-- set 1 -->
+      <span class="info-marquee-item"><span class="icon">⚡</span> Nạp rút nhanh chóng ( dưới 3 phút ) <span class="dot"></span></span>
+      <span class="info-marquee-item"><span class="icon">💳</span> Nạp rút bằng USDT, Ngân hàng - Banking<span class="dot"></span></span>
+      <span class="info-marquee-item"><span class="icon">🎧</span> CSKH 24/24 <span class="dot"></span></span>
+      <!-- set 2 – duplicate for seamless loop -->
+      <span class="info-marquee-item"><span class="icon">⚡</span> Nạp rút nhanh chóng ( dưới 3 phút ) <span class="dot"></span></span>
+      <span class="info-marquee-item"><span class="icon">💳</span> Nạp rút bằng USDT, Ngân hàng - Banking<span class="dot"></span></span>
+      <span class="info-marquee-item"><span class="icon">🎧</span> CSKH 24/24 <span class="dot"></span></span>
+    </div>
+  </div>
+
   <!-- HOW TO PLAY -->
   <div class="section reveal">
     <div class="section-title">Cách Tham Gia</div>
@@ -938,6 +1161,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
+
   <div class="gold-divider reveal"></div>
 
   <!-- PRIZES -->
@@ -961,7 +1185,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- STICKY CTA -->
 <div class="sticky-cta">
-  <button class="cta-btn" onclick="window.location.href='https://azvip88.com/?s=GYKV'">
+  <button class="cta-btn" onclick="openAgePopup()">
     🏆 ĐĂNG KÝ DỰ ĐOÁN NGAY
   </button>
   <div class="cta-sub">Miễn phí tham gia · Trúng thưởng thực · Rút tiền nhanh</div>
@@ -1045,6 +1269,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (!e || e.target === document.getElementById('contactPopup'))
       document.getElementById('contactPopup').classList.remove('show');
   }
+  /* ── Age Verify ──────────────────────────────── */
+  var AGE_REDIRECT = 'https://azvip88.com/?s=GYKV';
+
+  function openAgePopup() {
+    document.getElementById('ageCheck').checked = false;
+    document.getElementById('ageConfirmBtn').classList.remove('active');
+    document.getElementById('agePopup').classList.add('show');
+  }
+  function toggleAgeBtn() {
+    var checked = document.getElementById('ageCheck').checked;
+    document.getElementById('ageConfirmBtn').classList.toggle('active', checked);
+  }
+  function ageConfirm() {
+    if (!document.getElementById('ageCheck').checked) return;
+    document.getElementById('agePopup').classList.remove('show');
+    window.location.href = AGE_REDIRECT;
+  }
+  function ageDeny() {
+    window.location.reload();
+  }
+
   function openGift() { document.getElementById('giftPopup').classList.add('show'); }
   function closeGift(e) {
     if (!e || e.target === document.getElementById('giftPopup'))
